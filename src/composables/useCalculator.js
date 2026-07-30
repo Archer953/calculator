@@ -100,6 +100,16 @@ export function useCalculator() {
     }
   }
 
+  function inputDecimal() {
+    if (waitingForSecondOperand.value) {
+      currentValue.value = '0.'
+      waitingForSecondOperand.value = false
+      return
+    }
+    if (currentValue.value.includes('.')) return
+    currentValue.value += '.'
+  }
+
   function formatResult(value) {
     if (isNaN(value) || !isFinite(value)) {
       return '错误'
@@ -117,6 +127,7 @@ export function useCalculator() {
     setOperator,
     calculate,
     toggleSign,
-    percent
+    percent,
+    inputDecimal
   }
 }
