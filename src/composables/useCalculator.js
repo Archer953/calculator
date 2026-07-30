@@ -6,6 +6,8 @@ export function useCalculator() {
   const firstOperand = ref(null)
   const pendingOperator = ref(null)
   const waitingForSecondOperand = ref(false)
+  const lastOperand = ref(null)
+  const lastOperator = ref(null)
 
   function inputDigit(digit) {
     if (currentValue.value === '错误') {
@@ -28,10 +30,14 @@ export function useCalculator() {
     firstOperand.value = null
     pendingOperator.value = null
     waitingForSecondOperand.value = false
+    lastOperand.value = null
+    lastOperator.value = null
   }
 
   function setOperator(op) {
     if (currentValue.value === '错误') return
+    lastOperand.value = null
+    lastOperator.value = null
     const current = parseFloat(currentValue.value)
 
     if (firstOperand.value !== null && pendingOperator.value && !waitingForSecondOperand.value) {
@@ -50,12 +56,26 @@ export function useCalculator() {
 
   function calculate() {
     if (currentValue.value === '错误') return
+
+    // 重复上次运算：无挂起运算符但有历史记录
+    if (pendingOperator.value === null && lastOperator.value !== null) {
+      const current = parseFloat(currentValue.value)
+      const result = compute(current, lastOperator.value, lastOperand.value)
+      expression.value = `${formatDisplay(current)} ${lastOperator.value} ${formatDisplay(lastOperand.value)} =`
+      currentValue.value = formatResult(result)
+      return
+    }
+
     if (pendingOperator.value === null || waitingForSecondOperand.value) {
       return
     }
 
     const second = parseFloat(currentValue.value)
     const result = compute(firstOperand.value, pendingOperator.value, second)
+
+    // 保存用于重复运算
+    lastOperand.value = second
+    lastOperator.value = pendingOperator.value
 
     expression.value = `${formatDisplay(firstOperand.value)} ${pendingOperator.value} ${formatDisplay(second)} =`
     currentValue.value = formatResult(result)

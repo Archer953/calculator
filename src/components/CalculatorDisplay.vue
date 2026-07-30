@@ -1,5 +1,7 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   expression: {
     type: String,
     default: ''
@@ -9,12 +11,20 @@ defineProps({
     default: '0'
   }
 })
+
+const displayFontSize = computed(() => {
+  const len = props.currentValue.length
+  if (len <= 10) return '42px'
+  if (len <= 13) return '34px'
+  if (len <= 16) return '28px'
+  return '22px'
+})
 </script>
 
 <template>
   <div class="display">
     <div class="expression">{{ expression }}</div>
-    <div class="current-value">{{ currentValue }}</div>
+    <div class="current-value" :style="{ fontSize: displayFontSize }">{{ currentValue }}</div>
   </div>
 </template>
 
