@@ -78,6 +78,15 @@ export function useCalculator() {
     return String(value)
   }
 
+  function toggleSign() {
+    if (currentValue.value === '0') return
+    if (currentValue.value.startsWith('-')) {
+      currentValue.value = currentValue.value.slice(1)
+    } else {
+      currentValue.value = '-' + currentValue.value
+    }
+  }
+
   function formatResult(value) {
     if (isNaN(value) || !isFinite(value)) {
       return '错误'
@@ -93,6 +102,7 @@ export function useCalculator() {
     inputDigit,
     clear,
     setOperator,
-    calculate
+    calculate,
+    toggleSign
   }
 }
