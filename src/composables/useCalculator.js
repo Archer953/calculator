@@ -87,6 +87,19 @@ export function useCalculator() {
     }
   }
 
+  function percent() {
+    const current = parseFloat(currentValue.value)
+
+    if (firstOperand.value !== null && pendingOperator.value) {
+      // 有挂起运算符：计算第一操作数的百分比
+      const pct = firstOperand.value * current / 100
+      currentValue.value = formatResult(pct)
+    } else {
+      // 无挂起运算符：直接除以 100
+      currentValue.value = formatResult(current / 100)
+    }
+  }
+
   function formatResult(value) {
     if (isNaN(value) || !isFinite(value)) {
       return '错误'
@@ -103,6 +116,7 @@ export function useCalculator() {
     clear,
     setOperator,
     calculate,
-    toggleSign
+    toggleSign,
+    percent
   }
 }
