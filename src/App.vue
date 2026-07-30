@@ -3,7 +3,10 @@ import CalculatorDisplay from './components/CalculatorDisplay.vue'
 import CalculatorButton from './components/CalculatorButton.vue'
 
 const buttons = [
-  // 第 1 行：功能按钮（后续填充）                        第 4 列：÷
+  // 第 1 行：功能按钮 C  +/-  %                        第 4 列：÷
+  { label: 'C', type: 'function', row: 1, col: 1 },
+  { label: '±', type: 'function', row: 1, col: 2 },
+  { label: '%', type: 'function', row: 1, col: 3 },
   { label: '÷', type: 'operator', row: 1, col: 4 },
   // 第 2 行：数字 7 8 9                               第 4 列：×
   { label: '7', type: 'number', row: 2, col: 1 },
