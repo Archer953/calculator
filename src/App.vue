@@ -1,14 +1,41 @@
 <script setup>
 import CalculatorDisplay from './components/CalculatorDisplay.vue'
+import CalculatorButton from './components/CalculatorButton.vue'
+
+const buttons = [
+  // 第 2 行：数字 7 8 9（第 4 列运算符后续填充）
+  { label: '7', type: 'number', row: 2, col: 1 },
+  { label: '8', type: 'number', row: 2, col: 2 },
+  { label: '9', type: 'number', row: 2, col: 3 },
+  // 第 3 行：数字 4 5 6
+  { label: '4', type: 'number', row: 3, col: 1 },
+  { label: '5', type: 'number', row: 3, col: 2 },
+  { label: '6', type: 'number', row: 3, col: 3 },
+  // 第 4 行：数字 1 2 3
+  { label: '1', type: 'number', row: 4, col: 1 },
+  { label: '2', type: 'number', row: 4, col: 2 },
+  { label: '3', type: 'number', row: 4, col: 3 },
+  // 第 5 行：数字 0（占两列，小数点与等号后续填充）
+  { label: '0', type: 'number', row: 5, col: 1, wide: true },
+]
 </script>
 
 <template>
   <div class="calculator">
     <CalculatorDisplay />
 
-    <!-- 按钮区域占位 -->
     <div class="button-grid">
-      <!-- 按钮将在后续步骤中填充 -->
+      <CalculatorButton
+        v-for="btn in buttons"
+        :key="`${btn.row}-${btn.col}`"
+        :label="btn.label"
+        :type="btn.type"
+        :wide="btn.wide"
+        :style="{
+          gridRow: btn.row,
+          gridColumn: btn.wide ? `${btn.col} / span 2` : btn.col
+        }"
+      />
     </div>
   </div>
 </template>
