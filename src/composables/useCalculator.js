@@ -8,6 +8,10 @@ export function useCalculator() {
   const waitingForSecondOperand = ref(false)
 
   function inputDigit(digit) {
+    if (currentValue.value === '错误') {
+      currentValue.value = digit
+      return
+    }
     if (waitingForSecondOperand.value) {
       currentValue.value = digit
       waitingForSecondOperand.value = false
@@ -27,6 +31,7 @@ export function useCalculator() {
   }
 
   function setOperator(op) {
+    if (currentValue.value === '错误') return
     const current = parseFloat(currentValue.value)
 
     if (firstOperand.value !== null && pendingOperator.value && !waitingForSecondOperand.value) {
@@ -44,6 +49,7 @@ export function useCalculator() {
   }
 
   function calculate() {
+    if (currentValue.value === '错误') return
     if (pendingOperator.value === null || waitingForSecondOperand.value) {
       return
     }
@@ -79,7 +85,7 @@ export function useCalculator() {
   }
 
   function toggleSign() {
-    if (currentValue.value === '0') return
+    if (currentValue.value === '0' || currentValue.value === '错误') return
     if (currentValue.value.startsWith('-')) {
       currentValue.value = currentValue.value.slice(1)
     } else {
@@ -88,6 +94,7 @@ export function useCalculator() {
   }
 
   function percent() {
+    if (currentValue.value === '错误') return
     const current = parseFloat(currentValue.value)
 
     if (firstOperand.value !== null && pendingOperator.value) {
@@ -101,6 +108,7 @@ export function useCalculator() {
   }
 
   function inputDecimal() {
+    if (currentValue.value === '错误') return
     if (waitingForSecondOperand.value) {
       currentValue.value = '0.'
       waitingForSecondOperand.value = false
