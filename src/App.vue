@@ -1,12 +1,10 @@
 <script setup>
+import CalculatorDisplay from './components/CalculatorDisplay.vue'
 </script>
 
 <template>
   <div class="calculator">
-    <!-- 显示屏占位 -->
-    <div class="display">
-      <span class="display-text">0</span>
-    </div>
+    <CalculatorDisplay />
 
     <!-- 按钮区域占位 -->
     <div class="button-grid">
@@ -22,21 +20,6 @@
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-}
-
-.display {
-  padding: 24px 20px 16px;
-  min-height: 80px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-
-.display-text {
-  color: #ffffff;
-  font-size: 40px;
-  font-weight: 300;
-  line-height: 1;
 }
 
 .button-grid {
