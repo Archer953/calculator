@@ -12,9 +12,15 @@ export function useCalculator() {
     }
   }
 
+  function clear() {
+    currentValue.value = '0'
+    expression.value = ''
+  }
+
   return {
     currentValue,
     expression,
-    inputDigit
+    inputDigit,
+    clear
   }
 }
