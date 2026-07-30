@@ -1,6 +1,15 @@
 <script setup>
 import CalculatorDisplay from './components/CalculatorDisplay.vue'
 import CalculatorButton from './components/CalculatorButton.vue'
+import { useCalculator } from './composables/useCalculator.js'
+
+const { currentValue, expression, inputDigit } = useCalculator()
+
+function handleButtonClick(label) {
+  if (label >= '0' && label <= '9') {
+    inputDigit(label)
+  }
+}
 
 const buttons = [
   // 第 1 行：功能按钮 C  +/-  %                        第 4 列：÷
@@ -32,7 +41,10 @@ const buttons = [
 
 <template>
   <div class="calculator">
-    <CalculatorDisplay />
+    <CalculatorDisplay
+      :expression="expression"
+      :currentValue="currentValue"
+    />
 
     <div class="button-grid">
       <CalculatorButton
@@ -45,6 +57,7 @@ const buttons = [
           gridRow: btn.row,
           gridColumn: btn.wide ? `${btn.col} / span 2` : btn.col
         }"
+        @click="handleButtonClick"
       />
     </div>
   </div>
