@@ -3,13 +3,17 @@ import CalculatorDisplay from './components/CalculatorDisplay.vue'
 import CalculatorButton from './components/CalculatorButton.vue'
 import { useCalculator } from './composables/useCalculator.js'
 
-const { currentValue, expression, inputDigit, clear } = useCalculator()
+const { currentValue, expression, inputDigit, clear, setOperator, calculate } = useCalculator()
 
 function handleButtonClick(label) {
   if (label >= '0' && label <= '9') {
     inputDigit(label)
   } else if (label === 'C') {
     clear()
+  } else if (['+', '−', '×', '÷'].includes(label)) {
+    setOperator(label)
+  } else if (label === '=') {
+    calculate()
   }
 }
 
