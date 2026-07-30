@@ -23,8 +23,10 @@ const buttons = [
   { label: '2', type: 'number', row: 4, col: 2 },
   { label: '3', type: 'number', row: 4, col: 3 },
   { label: '+', type: 'operator', row: 4, col: 4 },
-  // 第 5 行：数字 0（占两列，小数点与等号后续填充）
+  // 第 5 行：数字 0（占两列）    小数点 .     等号 =
   { label: '0', type: 'number', row: 5, col: 1, wide: true },
+  { label: '.', type: 'number', row: 5, col: 3 },
+  { label: '=', type: 'equals', row: 5, col: 4 },
 ]
 </script>
 

@@ -39,7 +39,9 @@ defineEmits(['click'])
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: filter 0.1s;
+  transition: filter 0.1s, background-color 0.1s;
+  user-select: none;
+  outline: none;
 }
 
 .calc-btn:hover {
@@ -54,24 +56,41 @@ defineEmits(['click'])
 .btn-number {
   background-color: #3b3b3b;
   color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 /* 运算符按钮 */
 .btn-operator {
   background-color: #323232;
   color: #ffffff;
+  font-size: 22px;
+  font-weight: 300;
 }
 
 /* 功能按钮 */
 .btn-function {
   background-color: #323232;
   color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 /* 等号按钮 */
 .btn-equals {
   background-color: #4cc2ff;
   color: #1f1f1f;
+  font-size: 22px;
+}
+
+.btn-equals:hover {
+  background-color: #7ad6ff;
+  filter: none;
+}
+
+.btn-equals:active {
+  background-color: #2a9fd6;
+  filter: none;
 }
 
 .btn-wide {
