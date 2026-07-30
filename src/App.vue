@@ -3,18 +3,23 @@ import CalculatorDisplay from './components/CalculatorDisplay.vue'
 import CalculatorButton from './components/CalculatorButton.vue'
 
 const buttons = [
-  // 第 2 行：数字 7 8 9（第 4 列运算符后续填充）
+  // 第 1 行：功能按钮（后续填充）                        第 4 列：÷
+  { label: '÷', type: 'operator', row: 1, col: 4 },
+  // 第 2 行：数字 7 8 9                               第 4 列：×
   { label: '7', type: 'number', row: 2, col: 1 },
   { label: '8', type: 'number', row: 2, col: 2 },
   { label: '9', type: 'number', row: 2, col: 3 },
-  // 第 3 行：数字 4 5 6
+  { label: '×', type: 'operator', row: 2, col: 4 },
+  // 第 3 行：数字 4 5 6                               第 4 列：-
   { label: '4', type: 'number', row: 3, col: 1 },
   { label: '5', type: 'number', row: 3, col: 2 },
   { label: '6', type: 'number', row: 3, col: 3 },
-  // 第 4 行：数字 1 2 3
+  { label: '−', type: 'operator', row: 3, col: 4 },
+  // 第 4 行：数字 1 2 3                               第 4 列：+
   { label: '1', type: 'number', row: 4, col: 1 },
   { label: '2', type: 'number', row: 4, col: 2 },
   { label: '3', type: 'number', row: 4, col: 3 },
+  { label: '+', type: 'operator', row: 4, col: 4 },
   // 第 5 行：数字 0（占两列，小数点与等号后续填充）
   { label: '0', type: 'number', row: 5, col: 1, wide: true },
 ]
